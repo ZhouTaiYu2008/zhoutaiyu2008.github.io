@@ -8,20 +8,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
+
 <body>
   <div id="app"></div>
   <script>
     window.$docsify = {
       name: '周泰宇',
+      logo: './Logo.png',
       repo: 'https://github.com/ZhouTaiYu2008/zhoutaiyu2008.github.io',
       loadSidebar: true,
       subMaxLevel: 2,
       coverpage: true,
+      loadNavbar : true,
+
+      plugins: [
+        function (hook) {
+          var footer = [
+            '<hr/>',
+            '<footer>',
+            '<span> by ZhouTaiyu </span>',
+            '</footer>'
+          ].join('');
+
+          hook.afterEach(function (html) {
+            return html + footer;
+          });
+        }
+      ]
     }
   </script>
   <!-- Docsify 版本自动更新 -->
   <script src="//cdn.jsdelivr.net/npm/docsify"></script>
-  <!-- docsify的js依赖 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 </body>
 </html>
