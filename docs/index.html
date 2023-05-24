@@ -5,44 +5,97 @@
   <title>Document</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
+  <link rel="shortcut icon" href="Logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <style>
+ body:not(.ready) {
+        overflow: auto;
+      }
+      /* .giscus iframe {
+        border: none;
+      } */
+  </style>
 </head>
 
 <body>
   <div id="app"></div>
+  <!--<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
   <script>
     window.$docsify = {
       name: '周泰宇',
-      logo: './Logo.svg',
+      //logo: './Logo.svg',
       repo: 'https://github.com/ZhouTaiYu2008/zhoutaiyu2008.github.io',
       loadSidebar: true,
-      subMaxLevel: 2,
+      auto2top: true,
+      subMaxLevel: 4,
       coverpage: true,
       loadNavbar : true,
+      relativePath : true,
 
       plugins: [
-        function (hook) {
-          var footer = [
-            '<hr/>',
-            '<footer>',
-            '<span> by ZhouTaiyu </span>',
-            '<span> 2023 </span>',
-            '</footer>'
-          ].join('');
+        function (hook,vm) {
+          hook.beforeEach(function(html){
+
+          })
 
           hook.afterEach(function (html) {
+            var footer = [
+              '<hr/>',
+              '<footer>',
+              '<span> by ZhouTaiyu </span>',
+              '<span> 2023 </span>',
+              '</footer>'
+            ].join('');
             return html + footer;
           });
+
+          // discussions with giscus
+          hook.doneEach(function () {
+            var theme =
+              getComputedStyle(document.body).getPropertyValue(
+                "--toogleBackground"
+              ) === "#ffffff"
+                ? "dark"
+                : "light";
+
+            // console.log(theme);
+
+            var giscus = document.createElement("script");
+            giscus.type = "text/javascript";
+            giscus.async = true;
+            giscus.setAttribute("src", "https://giscus.app/client.js");
+            giscus.setAttribute("data-repo", "ZhouTaiYu2008/zhoutaiyu2008.github.io");
+            giscus.setAttribute("data-repo-id", "R_kgDOJlpOLg");
+            giscus.setAttribute("data-category", "Announcements");
+            giscus.setAttribute("data-category-id", "DIC_kwDOJlpOLs4CWrmc");
+            giscus.setAttribute("data-mapping", "pathname");
+            giscus.setAttribute("data-reactions-enabled", "1");
+            giscus.setAttribute("data-emit-metadata", "0");
+            giscus.setAttribute("data-input-position", "bottom");
+            giscus.setAttribute("data-theme", theme);
+            giscus.setAttribute("data-lang", "zh-CN");
+            giscus.setAttribute("data-loading", "lazy");
+            giscus.setAttribute("crossorigin", "anonymous");
+
+            // remove last iframe border
+            var iframes = document.getElementsByTagName("iframe");
+            document
+              .getElementById("main")
+              .insertBefore(giscus, document.getElementById("main").lastChild);
+          });
+
         }
       ]
     }
   </script>
-  <script src="https://giscus.app/client.js" data-repo="ZhouTaiYu2008/zhoutaiyu2008.github.io" data-repo-id="R_kgDOJlpOLg"
+  <!-- <script src="https://giscus.app/client.js" data-repo="ZhouTaiYu2008/zhoutaiyu2008.github.io" data-repo-id="R_kgDOJlpOLg"
     data-category="Announcements" data-category-id="DIC_kwDOJlpOLs4CWrmc" data-mapping="pathname" data-strict="0"
     data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
     data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
-    </script>
+    </script> -->
+    
   <!-- Docsify 版本自动更新 -->
   <script src="//cdn.jsdelivr.net/npm/docsify"></script>
 </body>
