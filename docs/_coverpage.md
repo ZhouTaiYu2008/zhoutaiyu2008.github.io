@@ -1,12 +1,10 @@
+![logo](Logo.svg'size=50%')
+# **雷霆文档**
+## 一个个人博客
+没事写写杂文,Unity游戏开发日志,日记
 
-
-# docsify <small>3.5</small>
-
-> 一个神奇的文档网站生成器。
-
-- 简单、轻便 (压缩后 ~21kB)
-- 无需生成 html 文件
-- 众多主题
+*<small>powered by docsify</small>*
 
 [GitHub](https://github.com/ZhouTaiYu2008/zhoutaiyu2008.github.io)
 [Get Started](/README.md)
+
