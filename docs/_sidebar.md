@@ -2,5 +2,3 @@
 - [README](/README.md "周泰宇的日志")
 - Blog
     - [1](/blog/Blog1.md)
-    - [2](/blog/jg.md)
-    - c

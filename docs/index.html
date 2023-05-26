@@ -7,32 +7,49 @@
   <meta name="description" content="Description">
   <link rel="shortcut icon" href="Logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-
+  
+  <!-- themes -->
+  <!-- Theme: Simple (light + dark) -->
+  <link rel="stylesheet" media="(prefers-color-scheme: light)"
+    href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)"
+    href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/dark.css"> -->
   <style>
  body:not(.ready) {
         overflow: auto;
       }
-      /* .giscus iframe {
-        border: none;
-      } */
   </style>
 </head>
 
 <body>
   <div id="app"></div>
-  <!--<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
   <script>
     window.$docsify = {
       name: '周泰宇',
-      //logo: './Logo.svg',
       repo: 'https://github.com/ZhouTaiYu2008/zhoutaiyu2008.github.io',
       loadSidebar: true,
       auto2top: true,
-      subMaxLevel: 4,
+      subMaxLevel: 0,
       coverpage: true,
       loadNavbar : true,
       relativePath : true,
+
+      darklightTheme: {
+        defaultTheme: 'light',
+        siteFont: 'Source Sans Pro,Helvetica Neue,Arial,sans-serif',
+        codeFontFamily: 'Roboto Mono, Monaco, courier, monospace',
+        bodyFontSize: '15px',
+        dark: {
+          background: 'rgb(28,32,34)',
+          highlightColor: '#e96900',
+          codeBackgroundColor: 'rgb(34,39,46)',
+          codeTextColor: '#b4b4b4',
+        },
+        light: {
+          highlightColor: '#e96900',
+        }
+      },
 
       plugins: [
         function (hook,vm) {
@@ -51,16 +68,15 @@
             return html + footer;
           });
 
-          // discussions with giscus
+           // discussions with giscus
           hook.doneEach(function () {
+            InitDiscussions()
             var theme =
               getComputedStyle(document.body).getPropertyValue(
                 "--toogleBackground"
               ) === "#ffffff"
                 ? "dark"
                 : "light";
-
-            // console.log(theme);
 
             var giscus = document.createElement("script");
             giscus.type = "text/javascript";
@@ -70,7 +86,7 @@
             giscus.setAttribute("data-repo-id", "R_kgDOJlpOLg");
             giscus.setAttribute("data-category", "Announcements");
             giscus.setAttribute("data-category-id", "DIC_kwDOJlpOLs4CWrmc");
-            giscus.setAttribute("data-mapping", "pathname");
+            giscus.setAttribute("data-mapping", "title");
             giscus.setAttribute("data-reactions-enabled", "1");
             giscus.setAttribute("data-emit-metadata", "0");
             giscus.setAttribute("data-input-position", "bottom");
@@ -90,15 +106,10 @@
       ]
     }
   </script>
-  <!-- <script src="https://giscus.app/client.js" data-repo="ZhouTaiYu2008/zhoutaiyu2008.github.io" data-repo-id="R_kgDOJlpOLg"
-    data-category="Announcements" data-category-id="DIC_kwDOJlpOLs4CWrmc" data-mapping="pathname" data-strict="0"
-    data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light"
-    data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
-    </script> -->
-    
   <!-- Docsify 版本自动更新 -->
   <script src="//cdn.jsdelivr.net/npm/docsify"></script>
   <!-- 引入 CS 代码高亮插件 -->
-  <script src="//unpkg.com/prismjs/components/prism-csharp.min.js"></script>
+  <!-- <script src="//unpkg.com/prismjs/components/prism-csharp.min.js"></script> -->
+  </script>
 </body>
 </html>
