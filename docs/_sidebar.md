@@ -1,3 +1,4 @@
 - [Home](/)
-- Blog
+- 杂记
     - [Markdown语法](/blog/Markdown语法.md)
+    - [InputSystem中遇到的小错误](/blog/InputSystem中遇到的小错误.md)
