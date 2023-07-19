@@ -10,7 +10,6 @@
 这两个脚本十分的特殊阿,一个`ScriptableObject`也就是会对其中的变量进行持久化储存.
 一个 `单例模式脚本` 这个就不多解释了.
 
-
 ## 问题
 
 一个十分神奇的问题,打破了我一直认为的 **程序能跑一遍,就可以跑第二遍** 的思想.<br>
@@ -67,6 +66,7 @@
 知道了问题,剩下就好办了.<br>
 在`OnDisable`中将`onMove(Action)`中的值减去就行了.<br>
 如下:
+
 ```csharp
     //PlayerController(节选的部分基本方法)
     private void OnEnable()
@@ -80,6 +80,7 @@
         playerInput.onStopMove -= StopMove;
     }
 ```
+
 ## 总结
 
 总结一下,在使用委托时有加就要有减.

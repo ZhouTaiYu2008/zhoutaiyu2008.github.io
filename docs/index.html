@@ -10,6 +10,21 @@
   
   <!-- themes -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css" /> -->
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/buble.css" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/dark.css" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/pure.css" /> -->
+  <!-- <script>
+  //   function themeChange() {
+  //     var theme = Docsify.dom.find('[rel="stylesheet"]');
+  //     if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+  //       theme.setAttribute('https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css');
+  //     }
+  //     else{
+  //       theme.setAttribute('href', '//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css');
+  //     }
+  //   }
+  // </script> -->
   <style>
  body:not(.ready) {
         overflow: auto;
@@ -58,31 +73,39 @@
 
       plugins: [
         function (hook,vm) {
-          hook.beforeEach(function(html){
-
-          })
-
+          var isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          hook.beforeEach(function (html) {
+            var theme = Docsify.dom.find('[rel="stylesheet"]');
+            if (isDark)
+            {
+              theme.setAttribute('https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css');
+            }
+            else
+            {
+              theme.setAttribute('href', '//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css');
+            }
+          });
           hook.afterEach(function (html) {
             var footer = [
               '<hr/>',
               '<footer>',
               '<span> by ZhouTaiyu </span>',
               '<span> 2023 </span><br>',
+              '<span>',
+              '</span>',
               '<span><small><i>powered by docsify</i></small></span>',
               '</footer>'
             ].join('');
             return html + footer;
           });
-
-           // discussions with giscus
+          // discussions with giscus
           hook.doneEach(function () {
-            InitDiscussions()
             var theme =
-              getComputedStyle(document.body).getPropertyValue(
-                "--toogleBackground"
-              ) === "#ffffff"
-                ? "dark"
+              isDark
+                ? "dark_dimmed"
                 : "light";
+
+            // console.log(theme);
 
             var giscus = document.createElement("script");
             giscus.type = "text/javascript";
@@ -92,10 +115,10 @@
             giscus.setAttribute("data-repo-id", "R_kgDOJlpOLg");
             giscus.setAttribute("data-category", "Announcements");
             giscus.setAttribute("data-category-id", "DIC_kwDOJlpOLs4CWrmc");
-            giscus.setAttribute("data-mapping", "title");
+            giscus.setAttribute("data-mapping", "pathname");
             giscus.setAttribute("data-reactions-enabled", "1");
             giscus.setAttribute("data-emit-metadata", "0");
-            giscus.setAttribute("data-input-position", "bottom");
+            giscus.setAttribute("data-input-position", "top");
             giscus.setAttribute("data-theme", theme);
             giscus.setAttribute("data-lang", "zh-CN");
             giscus.setAttribute("data-loading", "lazy");
@@ -107,11 +130,25 @@
               .getElementById("main")
               .insertBefore(giscus, document.getElementById("main").lastChild);
           });
-
         }
       ]
     }
   </script>
+  <script>
+    var preview = Docsify.dom.find('.demo-theme-preview');
+    var themes = Docsify.dom.findAll('[rel="stylesheet"]');
+    preview.onclick = function (e) {
+      var title = e.target.getAttribute('data-theme');
+      themes.forEach(function (theme) {
+        theme.disabled = theme.title !== title;
+      });
+    };
+  </script>
+  <!-- <script src="https://giscus.app/client.js" data-repo="ZhouTaiYu2008/zhoutaiyu2008.github.io" data-repo-id="R_kgDOJlpOLg"
+    data-category="Announcements" data-category-id="DIC_kwDOJlpOLs4CWrmc" data-mapping="title" data-strict="0"
+    data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme= "light"
+    data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+    </script> -->
   <!-- Docsify 版本自动更新 -->
   <script src="//cdn.jsdelivr.net/npm/docsify"></script>
   <!-- csharp 代码高亮插件 -->

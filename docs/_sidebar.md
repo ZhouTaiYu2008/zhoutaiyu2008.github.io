@@ -1,4 +1,6 @@
 - [Home](/)
 - 杂记
-    - [Markdown语法](/blog/Markdown语法.md)
-    - [InputSystem中遇到的小错误](/blog/InputSystem中遇到的小错误.md)
+  - [Markdown语法](/blog/Markdown语法.md)
+  - [InputSystem中遇到的小错误](/blog/InputSystem中遇到的小错误.md)
+- 教程
+  - [背包系统](/dev/背包系统.md)
